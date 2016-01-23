@@ -7,5 +7,5 @@ class Breed(models.Model):
 
 class Dog(models.Model):
     name = models.CharField(max_length=64, unique=True)
-    breed = models.ForeignKey(Breed)
+    breed = models.ForeignKey(Breed, on_delete=models.PROTECT)
     
