@@ -1,0 +1,19 @@
+{% load staticfiles compress %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>SPA Demo</title>
+  {% compress css %}
+  <link rel="stylesheet" media="all" href="{% static 'css/style.css' %}">
+  {% endcompress %}
+</head>
+<body lang="en">
+  <div><h1>SPA Demo</h1></div>
+  {% compress js %}
+  <script src="{% static 'js/custom.js' %}"></script>
+  {% endcompress %}
+</body>
+</html>
