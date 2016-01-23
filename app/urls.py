@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from rest_framework import routers
+from rest_framework.authtoken import obtain_auth_token
 
 from .views import index, DogViewSet, BreedViewSet
 
@@ -26,7 +27,7 @@ router.register(r'breeds', BreedViewSet)
 
 urlpatterns = [ 
     url(r'^$', index, name='index'), 
-    url(r'^app/', include(router.urls)),
-    url(r'^auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^api/token/', obtain_auth_token, name='api-token'),
+    url(r'^api/', include(router.urls)),
 ]
 

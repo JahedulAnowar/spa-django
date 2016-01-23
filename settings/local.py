@@ -38,21 +38,21 @@ ALLOWED_HOSTS = _hosts.split(',')
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'django.contrib.sessions',
     'django.contrib.staticfiles',
+    # Third party apps
     'rest_framework',
+    'rest_framework.authtoken',
     'compressor',
+    # Internal apps
     'app',
 )
 
 MIDDLEWARE_CLASSES = (
-    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.security.SecurityMiddleware',
 )
-
-SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
 
 ROOT_URLCONF = 'app.urls'
 
@@ -73,10 +73,11 @@ WSGI_APPLICATION = 'app.wsgi.application'
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSIONS_CLASSES': (
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
+        'rest_framework.permissions.IsAuthenticated',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
     ),
     'PAGE_SIZE': 10,
 }
