@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from rest_framework import routers
-from rest_framework.authtoken import obtain_auth_token
+from rest_framework.authtoken.views import obtain_auth_token
 
 from .views import index, DogViewSet, BreedViewSet
 

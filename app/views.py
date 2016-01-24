@@ -3,16 +3,18 @@ from rest_framework import viewsets, serializers
 from .models import Dog, Breed
 
 
-class DogSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Dog
-        fields = ['url', 'id', 'name', 'breed']
-
-
 class BreedSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Breed
         fields = ['url', 'id', 'name']
+
+
+class DogSerializer(serializers.HyperlinkedModelSerializer):
+    #breed = BreedSerializer(many=False, read_only=True)
+
+    class Meta:
+        model = Dog
+        fields = ['url', 'id', 'name', 'breed']
 
 
 class DogViewSet(viewsets.ModelViewSet):
